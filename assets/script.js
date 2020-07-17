@@ -16,16 +16,21 @@ function writePassword() {
     var characterArray = "";
     var password = "";
 
-    var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
-    var num = "0123456789".split("");
-    var specialChar = "!@#$%^&*()_+{}|[]\';:.,></?";
-    var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+    var num = "0123456789";
+    var specialChar = "!@#$%^&*()_+{}|[]\';:.></?"
+    var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     var charLength = prompt("How many characters? Must be between 8 - 128 characters");
-    if (charLength < 8 || charLength > 128) {
-      alert("Please Enter a vaild length");
-      writePassword();
-    } else {
+    if(charLength < 8 || charLength > 128) {
+      var charLength = prompt("Please enter a number between 8 - 128");
+      if (charLength < 8 || charLength > 128){
+        exit; 
+      } 
+      
+    } 
+
+   
     var special = confirm("Click OK to use special character's!");
     var lower = confirm("Click OK to you use lower case characters!");
     var upper = confirm("Click OK to use uppercase characters!");
@@ -35,6 +40,8 @@ function writePassword() {
       characterArray = characterArray.concat(specialChar);
       
     }
+      
+    
     if (lower) {
       characterArray = characterArray.concat(lowerCase);
       
@@ -50,10 +57,12 @@ function writePassword() {
       var character = characterArray[randomNumber];
       password += character;
     }
+  
     return password;
-
-  }
+  
+    
 }
+
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
